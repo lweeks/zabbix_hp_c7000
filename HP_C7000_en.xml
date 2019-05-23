@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2019-05-23T22:51:42Z</date>
+    <date>2019-05-23T23:51:06Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -403,7 +403,7 @@ These are referenced in the template, not the full numeric OID.</description>
                     <name>Device slots</name>
                     <type>4</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>disovery[{#SNMPVALUE},CPQRACK-MIB::cpqRackServerBladeName,{#BLADEPRESENT},CPQRACK-MIB::cpqRackServerBladePresent]</snmp_oid>
+                    <snmp_oid>disovery[{#SNMPVALUE},CPQRACK-MIB::cpqRackServerBladeName,{#BLADE_PRESENT},CPQRACK-MIB::cpqRackServerBladePresent]</snmp_oid>
                     <key>snmp.discovery_bays</key>
                     <delay>43200</delay>
                     <status>0</status>
@@ -428,7 +428,7 @@ These are referenced in the template, not the full numeric OID.</description>
                         <formula/>
                         <conditions>
                             <condition>
-                                <macro>{#BLADEPRESENT}</macro>
+                                <macro>{#BLADE_PRESENT}</macro>
                                 <value>3</value>
                                 <operator>8</operator>
                                 <formulaid>A</formulaid>
@@ -700,7 +700,7 @@ These are referenced in the template, not the full numeric OID.</description>
                         </conditions>
                     </filter>
                     <lifetime>1d</lifetime>
-                    <description/>
+                    <description>The filter on this item prototype excludes temperature sensors with a threshold of -1.</description>
                     <item_prototypes>
                         <item_prototype>
                             <name>Temperature ({#SNMPVALUE}, ID: {#SNMPINDEX})</name>
@@ -930,7 +930,7 @@ These are referenced in the template, not the full numeric OID.</description>
                     <name>Fan modules</name>
                     <type>4</type>
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
-                    <snmp_oid>discovery[{#SNMPVALUE}, CPQRACK-MIB::cpqRackCommonEnclosureFanPresent]</snmp_oid>
+                    <snmp_oid>discovery[{#FAN_PRESENT}, CPQRACK-MIB::cpqRackCommonEnclosureFanPresent]</snmp_oid>
                     <key>snmp.discovery_fans</key>
                     <delay>43200</delay>
                     <status>0</status>
@@ -953,7 +953,14 @@ These are referenced in the template, not the full numeric OID.</description>
                     <filter>
                         <evaltype>0</evaltype>
                         <formula/>
-                        <conditions/>
+                        <conditions>
+                            <condition>
+                                <macro>{#FAN_PRESENT}</macro>
+                                <value>3</value>
+                                <operator>8</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
                     </filter>
                     <lifetime>1d</lifetime>
                     <description/>
@@ -1172,9 +1179,9 @@ These are referenced in the template, not the full numeric OID.</description>
                             <key>cpqRackCommonEnclosureManagerFWRev[{#SNMPINDEX}]</key>
                             <delay>3600</delay>
                             <history>60d</history>
-                            <trends>90d</trends>
+                            <trends>0</trends>
                             <status>0</status>
-                            <value_type>3</value_type>
+                            <value_type>4</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -1232,9 +1239,9 @@ These are referenced in the template, not the full numeric OID.</description>
                             <key>cpqRackCommonEnclosureManagerPartNumber[{#SNMPINDEX}]</key>
                             <delay>86400</delay>
                             <history>60d</history>
-                            <trends>90d</trends>
+                            <trends>0</trends>
                             <status>0</status>
-                            <value_type>3</value_type>
+                            <value_type>4</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -1416,9 +1423,9 @@ These are referenced in the template, not the full numeric OID.</description>
                             <key>cpqRackCommonEnclosureManagerSerialNum[{#SNMPINDEX}]</key>
                             <delay>86400</delay>
                             <history>60d</history>
-                            <trends>90d</trends>
+                            <trends>0</trends>
                             <status>0</status>
-                            <value_type>3</value_type>
+                            <value_type>4</value_type>
                             <allowed_hosts/>
                             <units/>
                             <snmpv3_contextname/>
@@ -1570,7 +1577,14 @@ These are referenced in the template, not the full numeric OID.</description>
                     <filter>
                         <evaltype>0</evaltype>
                         <formula/>
-                        <conditions/>
+                        <conditions>
+                            <condition>
+                                <macro>{#SNMPVALUE}</macro>
+                                <value>3</value>
+                                <operator>8</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
                     </filter>
                     <lifetime>1d</lifetime>
                     <description/>
@@ -1748,7 +1762,14 @@ These are referenced in the template, not the full numeric OID.</description>
                     <filter>
                         <evaltype>0</evaltype>
                         <formula/>
-                        <conditions/>
+                        <conditions>
+                            <condition>
+                                <macro>{#SNMPVALUE}</macro>
+                                <value>3</value>
+                                <operator>8</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
                     </filter>
                     <lifetime>1d</lifetime>
                     <description/>
